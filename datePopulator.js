@@ -3,14 +3,14 @@
  *
  * @param params {Object}
  *  Must contain the following properties:
- *    date_id : (string) element id for date select,
- *    hour_id : (string) element id for hour select,
- *    date_am : (array) [start hour, start minutes, end hour, end minutes] for the morning,
- *    date_pm : (array) [...] same as morning for the afternoon,
- *    t_gap : (int) gap in minutes between hours,
- *    n_days : (int) number of days,
- *    only_business : (boolean) whether to skip non business days,
- *    days_names : (array) translated days names (keyed by the day number returned by Date::getDay())
+ *    date_id : {string} element id for date select,
+ *    hour_id : {string} element id for hour select,
+ *    date_am : {array} [start hour, start minutes, end hour, end minutes] for the morning,
+ *    date_pm : {array} [...] same as morning for the afternoon,
+ *    t_gap : {int} gap in minutes between hours,
+ *    n_days : {int} number of days,
+ *    only_business : {boolean} whether to skip non business days,
+ *    days_names : {array} translated days names (keyed by the day number returned by Date::getDay())
  * @constructor {}
  */
 function DatePopulator(params) {
@@ -27,7 +27,7 @@ function DatePopulator(params) {
     };
     var DP = this.DP;
     /**
-     * @param $date
+     * @param $date {Date}
      * @returns {Array}
      */
     DP.fn.getDays = function ($date) {
@@ -56,23 +56,23 @@ function DatePopulator(params) {
         return days;
     };
     /**
-     * @param day
+     * @param day {int}
      * @returns {string}
      */
     DP.fn.getTranslatedDay = function (day) {
         return DP.days_names[day];
     };
     /**
-     * @param value
+     * @param value {int}
      * @returns {string}
      */
     DP.fn.twoDigits = function (value) {
-        return (value < 10) ? "0" + value : value;
+        return (value < 10) ? "0" + value : "" + value;
     };
     /**
-     * @param $date
-     * @param separator
-     * @param reverse
+     * @param $date {Date}
+     * @param separator {string}
+     * @param reverse {boolean}
      * @returns {string}
      */
     DP.fn.getFormattedDate = function ($date, separator, reverse) {
@@ -87,7 +87,7 @@ function DatePopulator(params) {
         return arrDate.join(separator);
     };
     /**
-     * @param $date
+     * @param $date {Date}
      * @returns {boolean}
      */
     DP.fn.isImmediate = function ($date) {
